@@ -1,6 +1,6 @@
 name: Standalone Operations
 
-#Crear una action inicilizadora para los pasos de git que solo se ejecutarán la primera vez
+#Crear una action inicializadora para los pasos de git que solo se ejecutarán la primera vez
 #como inicializar el git y crear el venv.
 
 on:
@@ -22,7 +22,6 @@ jobs:
         - name: connect and pull
           run: | 
               ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
-              pwd \
               "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} \
               && git pull origin main \
               && source venv/bin/activate \
