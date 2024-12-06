@@ -22,6 +22,7 @@ jobs:
         - name: connect and pull
           run: | 
               ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+              pwd
               "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} \
               && git pull origin main \
               && source venv/bin/activate \
