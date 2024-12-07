@@ -28,8 +28,7 @@ def perform(input1, input2, request: gr.Request):
             return resultado, info_window, html_credits, btn_buy
     else:
         info_window, resultado, html_credits = sulkuFront.noCredit(request.username)
-        return resultado, info_window, html_credits, btn_buy
-    
+        return resultado, info_window, html_credits, btn_buy    
     
     #Primero revisa si es imagen!: 
     if "result.png" in resultado:
