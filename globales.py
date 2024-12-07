@@ -2,13 +2,12 @@ import gradio as gr
 import tools
 
 #MAIN
-version = "2.5.4"
+version = "2.5.5"
 env = "dev"
 aplicacion = "astroblend-dev"
 api = "Moibe/image-blend"
 #api = "Kwai-Kolors/Kolors-Character-With-Flux"
 seto = "image-blend"
-#seto = "zhi"
 work = "picswap"
 app_path = "/boilerplate"
 server_port=7860

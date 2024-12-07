@@ -1,3 +1,5 @@
+result_ok = "Image ready!" 
+
 out_of_credits = "Out of credits..."
 
 PAUSED = "AI Engine Paused, ready soon."
