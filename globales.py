@@ -1,11 +1,14 @@
 import gradio as gr
-import tools
 
 #MAIN
-version = "2.5.6"
+version = "3.5.6"
 env = "dev"
 aplicacion = "astroblend-dev"
-api = "Moibe/image-blend"
+
+api_zero = "Moibe/image-blend"
+api_cost = "Moibe/image-blend"
+same_api = True
+process_cost = 0
 #api = "Kwai-Kolors/Kolors-Character-With-Flux"
 seto = "image-blend"
 work = "picswap"

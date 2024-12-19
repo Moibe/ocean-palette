@@ -3,7 +3,6 @@ import globales
 import sulkuPypi
 import gradio as gr
 import threading
-from huggingface_hub import HfApi
 import sulkuMessages
 
 result_from_displayTokens = None
@@ -13,7 +12,6 @@ def displayTokens(request: gr.Request):
     
     global result_from_displayTokens
 
-    print("Estoy en displayTokens...")
     novelty = sulkuPypi.getNovelty(sulkuPypi.encripta(request.username).decode("utf-8"), globales.aplicacion)    
     if novelty == "new_user": 
         display = gr.Textbox(visible=False)
@@ -56,11 +54,11 @@ def noCredit(usuario):
     info_window = sulkuMessages.out_of_credits
     path = 'images/no-credits.png'
     tokens = 0
-    html_credits = visualizar_creditos(tokens, usuario)   
-
+    html_credits = visualizar_creditos(tokens, usuario)
     return info_window, path, html_credits
 
 def aError(usuario, tokens, excepcion):
+    #aError se usa para llenar todos los elementos visuales en el front.
     info_window = manejadorExcepciones(excepcion)
     path = 'images/error.png'
     tokens = tokens
