@@ -32,6 +32,8 @@ def getData(aplicacion):
     else:
         error = f"Error al obtener el elemento todo: {response.status_code}"
         return error
+    
+    print("Éste es el data que estoy recibiendo...")
 
     return data
 
