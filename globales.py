@@ -1,7 +1,7 @@
 import gradio as gr
 
 #MAIN
-version = "4.6.12"
+version = "4.7.12"
 env = "dev"
 aplicacion = "astroblend-dev"
 
@@ -10,16 +10,13 @@ max_size = 20
 #Quota o Costo
 api_zero = "Moibe/image-blend"
 api_cost = "Moibe/image-blend"
-
 #A o B
 api_a = "Moibe/image-blend"
 api_b = "Moibe/image-blend"
-
 #Gratis o Costo
 api_gratis = "Moibe/image-blend"
 api_costo = "Moibe/image-blend"
 
-same_api = True
 process_cost = 0
 #api = "Kwai-Kolors/Kolors-Character-With-Flux"
 seto = "image-blend"
