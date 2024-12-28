@@ -8,7 +8,13 @@ import gradio as gr
 
 def iniciar():    
     app_path = globales.app_path
+    main.queue(max_size=1)
     main.launch(auth=autorizador.authenticate, root_path=app_path, server_port=globales.server_port)
+
+def welcome(name):
+    print("Entré a Welcome!")
+    #raise gr.Error("Entré a Welcome!")
+    return f"Welcome to Gradio!"
     
 #INTERFAZ
 #Credit Related Elements
@@ -25,10 +31,16 @@ with gr.Blocks(theme=globales.tema, css="footer {visibility: hidden}") as main:
     main.load(sulkuFront.precarga, None, html_credits) 
    
     with gr.Row():
-        demo = gr.Interface(
-            fn=funciones.perform,
-            inputs=[input1, input2], #Agregar inputs manualmente.
-            outputs=[result, lbl_console, html_credits, btn_buy], 
-            flagging_mode=globales.flag
-            )
+        try:
+            demo = gr.Interface(
+                fn=funciones.perform,
+                inputs=[input1, input2], #Agregar inputs manualmente.
+                outputs=[result, lbl_console, html_credits, btn_buy], 
+                flagging_mode=globales.flag            
+                )
+        except Exception as e:
+            print("Éste es el except de INTERFACE!!!!...")  
+
+    result.change(welcome, result, lbl_console)    
+        
 iniciar()

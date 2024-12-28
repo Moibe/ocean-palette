@@ -19,11 +19,32 @@ def theme_selector():
 
 def eligeAPI():
 
-    api, tipo_api = eligeQuotaOCosto()
+    #api, tipo_api = eligeQuotaOCosto()
+    api, tipo_api = eligeAOB()
 
     return api, tipo_api
 
+#Los tipos de elección son diferentes porque tienen diferentes reglas de negocio.
+
+def eligeGratisOCosto():
+#Se eligirá en los casos en los que sin costo funciona bien como Astroblend pero por si se quiere mejorar hacia Costo.
+#Por ahora funcionará exactamente igual que eligeAoB, en el futuro se basará en reglas de membresía.
+    pass
+
+def eligeAOB():
+#Se eligirá cuando se tenga un control sobre la cantidad en queu y se redirija hacia una segunda fuente alternativa.
+    # Lista con las opciones
+    apis = [globales.api_a, globales.api_b]
+
+    # Elegir un elemento aleatorio de la lista
+    api_elegida = random.choice(apis)
+
+    print("Print api elegida: ", api_elegida)
+
+    return api_elegida, "costo"
+
 def eligeQuotaOCosto():
+#Se eligirá en los casos en los que se use Zero, para extender las posibilidades de Quota y después usar Costo.
 
     diferencia = sulkuPypi.getQuota() - globales.process_cost
 

@@ -12,6 +12,8 @@ btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 #PERFORM es la app INTERNA que llamará a la app externa.
 def perform(input1, input2, request: gr.Request):
 
+    print("Entré a Perform...")
+
     #Future: Maneja una excepción para el concurrent.futures._base.CancelledError
     #Future: Que no se vea el resultado anterior al cargar el nuevo resultado! (aunque solo se ven los resultados propios.)         
 
@@ -21,8 +23,11 @@ def perform(input1, input2, request: gr.Request):
     autorizacion = sulkuPypi.authorize(tokens, globales.work)
     if autorizacion is True:
         try: 
+            print("Entré al try de perform")
+            time.sleep(1)
             resultado = mass(input1, input2)
-        except Exception as e:            
+        except Exception as e:
+            print("Éste es el except de perform...")            
             info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = tools.titulizaExcepDeAPI(e))
             return resultado, info_window, html_credits, btn_buy
     else:
@@ -65,20 +70,17 @@ def mass(input1, input2):
     
     try: 
         result = client.predict(imagenSource, imagenDestiny, api_name="/predict")
-        
+                
         #(Si llega aquí, debes debitar de la quota, incluso si detecto no-face o algo.)
         if tipo_api == "gratis":
             print("Como el tipo api fue gratis, si debitaremos la quota.")
             sulkuPypi.updateQuota(globales.process_cost)
-        #No debitas la cuota si no era gratis, solo aplica para Zero.  
-       
+        #No debitas la cuota si no era gratis, solo aplica para Zero.         
         
         #result = splash_tools.desTuplaResultado(result)
         return result
 
     except Exception as e:
-            print("Hubo un errora al ejecutar MASS:", e)
-            #Errores al correr la API.
             #La no detección de un rostro es mandado aquí?! Siempre?
             mensaje = tools.titulizaExcepDeAPI(e)        
             return mensaje
