@@ -10,19 +10,10 @@ def iniciar():
     app_path = globales.app_path
     main.launch(auth=autorizador.authenticate, root_path=app_path, server_port=globales.server_port)
     
-#INTERFAZ
 #Credit Related Elements
 html_credits = gr.HTML(visible=True)
 lbl_console = gr.Label(label="AI Terminal Messages", value="AI Engine ready...", container=True)
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
-
-#Customizable Inputs and Outputs
-#input1, result, *resto = inputs.inputs_selector(globales.seto)
-
-#Por alguna razón, los elementos que pasan como *resto, pierden su type filepath y se vuelven numpy.
-#Así es que la asignación del tipo la hago hasta acá.
-# for elemento in resto:
-#     elemento.type = "filepath"
 
 input1 = gr.Image(label="Source", type="filepath")
 input2 = gr.Textbox()

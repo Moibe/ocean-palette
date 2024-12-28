@@ -8,11 +8,10 @@ import gradio as gr
 
 def iniciar():    
     app_path = globales.app_path
-    main.queue(max_size=1)
+    main.queue(max_size=globales.max_size)
     main.launch(auth=autorizador.authenticate, root_path=app_path, server_port=globales.server_port)
 
 def welcome(name):
-    print("Entré a Welcome!")
     #raise gr.Error("Entré a Welcome!")
     return f"Welcome to Gradio!"
     
@@ -39,7 +38,7 @@ with gr.Blocks(theme=globales.tema, css="footer {visibility: hidden}") as main:
                 flagging_mode=globales.flag            
                 )
         except Exception as e:
-            print("Éste es el except de INTERFACE!!!!...")  
+            print("Interface error...") #Checar si alguna vez entra.
 
     result.change(welcome, result, lbl_console)    
         

@@ -12,8 +12,6 @@ btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 #PERFORM es la app INTERNA que llamará a la app externa.
 def perform(input1, input2, request: gr.Request):
 
-    print("Entré a Perform...")
-
     #Future: Maneja una excepción para el concurrent.futures._base.CancelledError
     #Future: Que no se vea el resultado anterior al cargar el nuevo resultado! (aunque solo se ven los resultados propios.)         
 
@@ -23,8 +21,6 @@ def perform(input1, input2, request: gr.Request):
     autorizacion = sulkuPypi.authorize(tokens, globales.work)
     if autorizacion is True:
         try: 
-            print("Entré al try de perform")
-            time.sleep(1)
             resultado = mass(input1, input2)
         except Exception as e:
             print("Éste es el except de perform...")            
@@ -56,7 +52,7 @@ def perform(input1, input2, request: gr.Request):
 def mass(input1, input2):
 
     if globales.same_api == False: #Si son diferentes apis, realiza el proceso de selección.
-        api, tipo_api = tools.eligeAPI()
+        api, tipo_api = tools.eligeAPI(globales.seleccion_api)
         print("Una vez elegido API, el tipo api es: ", tipo_api)
     else: #Si no, deja la primera y no corras ningun proceso. 
         api = globales.api_zero

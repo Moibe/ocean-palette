@@ -17,10 +17,23 @@ def theme_selector():
     print("Tema random: ", tema)
     return tema
 
-def eligeAPI():
+def eligeAPI(opcion):
 
-    #api, tipo_api = eligeQuotaOCosto()
-    api, tipo_api = eligeAOB()
+    # #api, tipo_api = eligeQuotaOCosto()
+    # api, tipo_api = eligeAOB()
+
+    funciones = {
+        "eligeQuotaOCosto": eligeQuotaOCosto,
+        "eligeAOB": eligeAOB,
+        "eligeGratisOCosto": eligeGratisOCosto
+    }
+    
+    if opcion in funciones:
+        print("Opción en Funciones")
+        funcion_elegida = funciones[opcion]
+        api, tipo_api = funcion_elegida()
+    else:
+        print("Opción no válida")
 
     return api, tipo_api
 
@@ -29,7 +42,15 @@ def eligeAPI():
 def eligeGratisOCosto():
 #Se eligirá en los casos en los que sin costo funciona bien como Astroblend pero por si se quiere mejorar hacia Costo.
 #Por ahora funcionará exactamente igual que eligeAoB, en el futuro se basará en reglas de membresía.
-    pass
+    
+    apis = [globales.api_a, globales.api_b]
+
+    # Elegir un elemento aleatorio de la lista
+    api_elegida = random.choice(apis)
+
+    print("Print api elegida: ", api_elegida)
+
+    return api_elegida, "costo"
 
 def eligeAOB():
 #Se eligirá cuando se tenga un control sobre la cantidad en queu y se redirija hacia una segunda fuente alternativa.
@@ -45,7 +66,7 @@ def eligeAOB():
 
 def eligeQuotaOCosto():
 #Se eligirá en los casos en los que se use Zero, para extender las posibilidades de Quota y después usar Costo.
-
+    print("Entré a QuotaOCOsto")
     diferencia = sulkuPypi.getQuota() - globales.process_cost
 
     if diferencia >= 0:
