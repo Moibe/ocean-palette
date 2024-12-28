@@ -40,6 +40,6 @@ with gr.Blocks(theme=globales.tema, css="footer {visibility: hidden}") as main:
         except Exception as e:
             print("Interface error...") #Checar si alguna vez entra.
 
-    result.change(welcome, result, lbl_console)    
+    #result.change(welcome, result, lbl_console)    
         
 iniciar()
