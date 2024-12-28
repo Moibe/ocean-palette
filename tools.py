@@ -17,7 +17,13 @@ def theme_selector():
     print("Tema random: ", tema)
     return tema
 
-def elijeAPI():
+def eligeAPI():
+
+    api, tipo_api = eligeQuotaOCosto()
+
+    return api, tipo_api
+
+def eligeQuotaOCosto():
 
     diferencia = sulkuPypi.getQuota() - globales.process_cost
 

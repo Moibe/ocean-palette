@@ -9,6 +9,6 @@ def authenticate(username, password):
     for u, p in lista_usuarios:
         #Si el usuario y la contraseña son correctas...
         if username == u and password == p:
-            api, tipo_api = tools.elijeAPI()                                           
+            api, tipo_api = tools.eligeAPI()                                           
             return True    
     return False

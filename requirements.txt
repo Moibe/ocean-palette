@@ -3,3 +3,4 @@ gradio
 gradio_client
 python-cryptography-fernet-wrapper
 huggingface_hub
+https://github.com/Moibe/sulkuPypi

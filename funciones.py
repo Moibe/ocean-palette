@@ -51,7 +51,7 @@ def perform(input1, input2, request: gr.Request):
 def mass(input1, input2):
 
     if globales.same_api == False: #Si son diferentes apis, realiza el proceso de selección.
-        api, tipo_api = tools.elijeAPI()
+        api, tipo_api = tools.eligeAPI()
         print("Una vez elegido API, el tipo api es: ", tipo_api)
     else: #Si no, deja la primera y no corras ningun proceso. 
         api = globales.api_zero
