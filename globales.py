@@ -1,14 +1,14 @@
 import gradio as gr
 
 #MAIN
-version = "4.8.12"
+version = "4.9.12"
 env = "dev"
 aplicacion = "astroblend-dev"
 
 seleccion_api = "eligeAOB" #eligeGratisOCosto , eligeAOB o eligeGratisOCosto
 max_size = 20
 #Quota o Costo
-api_zero = ("Moibe/image-blend", "gratis")
+api_zero = ("Moibe/image-blend", "quota")
 api_cost = ("Moibe/image-blend", "costo")
 #A o B
 api_a = ("Moibe/image-blend", "gratis")
