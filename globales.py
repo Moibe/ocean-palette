@@ -1,7 +1,7 @@
 import gradio as gr
 
 #MAIN
-version = "0.0.1"
+version = "0.0.2"
 env = "dev"
 aplicacion = "palette-dev"
 
@@ -22,7 +22,7 @@ interface_api_name = "/gradio_interface" #El endpoint al que llamará client.
 process_cost = 0
 seto = "palette"
 work = "picswap"
-app_path = "/boilerplate"
+app_path = "/palette-dev"
 server_port=7820
 #tema = tools.theme_selector()
 tema = gr.themes.Default()
