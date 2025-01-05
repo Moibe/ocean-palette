@@ -34,4 +34,10 @@ configuraciones = {
         "input2": gr.Textbox(label="Prompt"),
         "result": gr.Image(label="Result"),
     },
+    "palette": {
+        "input1": gr.Image(label="Source", type="filepath"),
+        "result1": gr.HTML(visible=True),
+        "result2": gr.Image(label="palette"),
+        "result3": gr.Textbox(label="Generated CSS Code", lines=6)
+    },
 }

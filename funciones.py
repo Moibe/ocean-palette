@@ -10,7 +10,7 @@ import tools
 btn_buy = gr.Button("Get Credits", visible=False, size='lg')
 
 #PERFORM es la app INTERNA que llamará a la app externa.
-def perform(input1, input2, request: gr.Request):
+def perform(input1, request: gr.Request): #Éstos inputs debes ponerlos manuales.
 
     #Future: Maneja una excepción para el concurrent.futures._base.CancelledError
     #Future: Que no se vea el resultado anterior al cargar el nuevo resultado! (aunque solo se ven los resultados propios.)         
@@ -21,17 +21,17 @@ def perform(input1, input2, request: gr.Request):
     autorizacion = sulkuPypi.authorize(tokens, globales.work)
     if autorizacion is True:
         try: 
-            resultado = mass(input1, input2)
+            resultado1, resultado2, resultado3 = mass(input1)
         except Exception as e:
             print("Éste es el except de perform...")            
             info_window, resultado, html_credits = sulkuFront.aError(request.username, tokens, excepcion = tools.titulizaExcepDeAPI(e))
-            return resultado, info_window, html_credits, btn_buy
+            return resultado, resultado, resultado, info_window, html_credits, btn_buy
     else:
         info_window, resultado, html_credits = sulkuFront.noCredit(request.username)
-        return resultado, info_window, html_credits, btn_buy    
+        return "no-credits", resultado, resultado, info_window, html_credits, btn_buy    
     
-    #Primero revisa si es imagen!: 
-    if "result.png" in resultado:
+    #IMPORTANTE: Por el momento no usaré ésto porque no estamos lidiando con imagenes.
+    if 1 == 1: #Porque no habrá chequeo de imagen aquí y siempre debitaremos.
         #Si es imagen, debitarás.
         html_credits, info_window = sulkuFront.presentacionFinal(request.username, "debita")
     else: 
@@ -46,22 +46,20 @@ def perform(input1, input2, request: gr.Request):
     #     html_credits, info_window = sulkuFront.presentacionFinal(request.username, "no debita") 
             
     #Lo que se le regresa oficialmente al entorno.
-    return resultado, info_window, html_credits, btn_buy
+    return resultado1, resultado2, resultado3, info_window, html_credits, btn_buy
 
 #MASS es la que ejecuta la aplicación EXTERNA
-def mass(input1, input2):
+def mass(input1): #Los inputs que recibe mass también se deben agregar manualmente.
     
     api, tipo_api = tools.eligeAPI(globales.seleccion_api)
     print("Una vez elegido API, el tipo api es: ", tipo_api)
 
-    client = gradio_client.Client(api, hf_token=bridges.hug)
-    #client = gradio_client.Client("https://058d1a6dcdbaca0dcf.gradio.live/")  #MiniProxy
-
+    client = gradio_client.Client(api, hf_token=bridges.hug)   
     imagenSource = gradio_client.handle_file(input1) 
-    imagenDestiny = gradio_client.handle_file(input2)       
+          
     
     try: 
-        result = client.predict(imagenSource, imagenDestiny, api_name="/predict")
+        result1, result2, result3 = client.predict(imagenSource, api_name=globales.interface_api_name)
                 
         #(Si llega aquí, debes debitar de la quota, incluso si detecto no-face o algo.)
         if tipo_api == "quota":
@@ -70,32 +68,9 @@ def mass(input1, input2):
         #No debitas la cuota si no era gratis, solo aplica para Zero.         
         
         #result = splash_tools.desTuplaResultado(result)
-        return result
+        return result1, result2, result3 
 
     except Exception as e:
             #La no detección de un rostro es mandado aquí?! Siempre?
             mensaje = tools.titulizaExcepDeAPI(e)        
             return mensaje
-
-def mass_zhi(input1, input2): 
-
-    imagenSource = gradio_client.handle_file(input1) 
-    #imagenDestiny = gradio_client.handle_file(input2)       
-
-    client = gradio_client.Client(globales.api)
-    #result = client.predict(imagenSource, imagenDestiny, api_name="/predict")
-
-    result = client.predict(
-		prompt="A hot girl in sexy cocktail dress.",
-		person_img=imagenSource,
-		seed=486992,
-		randomize_seed=False,
-		height=1024,
-		width=1024,
-		api_name="/character_gen"
-        )
-    
-    print(result)
-    print(result[0])    
-
-    return result[0]

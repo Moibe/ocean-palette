@@ -15,8 +15,13 @@ def inputs_selector(set):
         elif len(config) == 3:
             input1 = config["input1"]
             input2 = config["input2"]
-            result = config["result"]
-            
+            result = config["result"]            
             return input1, input2, result
+        elif len(config) == 4: #palette
+            input1 = config["input1"]
+            result1 = config["result1"]
+            result2 = config["result2"]
+            result3 = config["result3"]
+            return input1, result1, result2, result3 
     else:
         print("Set no válido")

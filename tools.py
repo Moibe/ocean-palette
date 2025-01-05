@@ -39,7 +39,7 @@ def eligeAPI(opcion):
 def eligeGratisOCosto():
 #Se eligirá en los casos en los que sin costo funciona bien como Astroblend pero por si se quiere mejorar hacia Costo.
 #Por ahora funcionará exactamente igual que eligeAoB, en el futuro se basará en reglas de membresía.
-    apis = [globales.api_a, globales.api_b]
+    apis = [globales.api_gratis, globales.api_costo]
     api_elegida = random.choice(apis)
     print("Print api elegida: ", api_elegida)
     api, tipo_api = api_elegida
