@@ -1,10 +1,10 @@
 #!/bin/bash
-pid=$(lsof -i :7860 | awk 'NR==2 {print $2}')
+pid=$(lsof -i :7820 | awk 'NR==2 {print $2}')
 #Revisar si la búsqueda del proceso está vacía.
 if [ -z "$pid" ]; then
   #Si está vacía entonces:
   timestamp1=$(date +"%d-%m-%Y %H:%M:%S")
-  echo "$timestamp1 - ATENCIÓN: No se encontró ningún proceso escuchando en el puerto 7860. Reactivando aplicación."
+  echo "$timestamp1 - ATENCIÓN: No se encontró ningún proceso escuchando en el puerto 7820. Reactivando aplicación."
   #Reiniciando proceso
   cd
   cd code/gradio-standalone-do/
