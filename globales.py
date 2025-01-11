@@ -1,9 +1,9 @@
 import gradio as gr
 
 #MAIN
-version = "0.0.3"
-env = "dev"
-aplicacion = "palette-dev"
+version = "0.0.1"
+env = "prod"
+aplicacion = "palette"
 
 seleccion_api = "eligeGratisOCosto" #eligeGratisOCosto , eligeAOB o eligeGratisOCosto
 max_size = 20
@@ -23,9 +23,7 @@ process_cost = 0
 seto = "palette"
 work = "picswap"
 app_path = "/palette-dev"
-server_port=7820
+server_port=7822
 #tema = tools.theme_selector()
 tema = gr.themes.Default()
-flag = "auto"
-
-#Future: Put age to cookies.
+flag = "never" #auto, never, manual.
