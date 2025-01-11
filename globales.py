@@ -1,7 +1,7 @@
 import gradio as gr
 
 #MAIN
-version = "0.0.2"
+version = "0.0.3"
 env = "dev"
 aplicacion = "palette-dev"
 
